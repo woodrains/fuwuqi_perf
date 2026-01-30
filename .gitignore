@@ -1,0 +1,8 @@
+# Local build artifacts (excluded from import)
+/perfvec/block_trace/tracer/build/
+/gem5-ml-sim/build/
+
+# Common
+*.pyc
+__pycache__/
+.DS_Store

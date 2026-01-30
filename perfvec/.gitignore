@@ -1,0 +1,16 @@
+*.log
+*.swp
+*~
+*#
+*.pyc
+__pycache__
+tmp*
+/run*
+/models
+/res
+/log
+/checkpoints
+/stats
+/fig
+/Data*
+/DP/build*

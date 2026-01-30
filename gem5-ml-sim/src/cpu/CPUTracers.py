@@ -1,0 +1,63 @@
+# Copyright (c) 2007 The Regents of The University of Michigan
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are
+# met: redistributions of source code must retain the above copyright
+# notice, this list of conditions and the following disclaimer;
+# redistributions in binary form must reproduce the above copyright
+# notice, this list of conditions and the following disclaimer in the
+# documentation and/or other materials provided with the distribution;
+# neither the name of the copyright holders nor the names of its
+# contributors may be used to endorse or promote products derived from
+# this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+# A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+# OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+# SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+# LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+# DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+# THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+# OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+from m5.objects.InstTracer import InstTracer
+from m5.params import *
+from m5.SimObject import SimObject
+
+
+class ExeTracer(InstTracer):
+    type = "ExeTracer"
+    cxx_class = "gem5::trace::ExeTracer"
+    cxx_header = "cpu/exetrace.hh"
+
+
+class IntelTrace(InstTracer):
+    type = "IntelTrace"
+    cxx_class = "gem5::trace::IntelTrace"
+    cxx_header = "cpu/inteltrace.hh"
+
+
+class NativeTrace(ExeTracer):
+    abstract = True
+    type = "NativeTrace"
+    cxx_class = "gem5::trace::NativeTrace"
+    cxx_header = "cpu/nativetrace.hh"
+
+
+class MicroOpVerboseTracer(InstTracer):
+    type = "MicroOpVerboseTracer"
+    cxx_class = "gem5::trace::MicroOpVerboseTracer"
+    cxx_header = "cpu/uop_tracer.hh"
+
+    output_path = Param.String(
+        "",
+        "输出 μOP JSONL 路径（相对 m5out 或绝对路径）",
+    )
+    buffer_size = Param.MemorySize(
+        "8GB",
+        "μOP trace 内存缓冲上限，填满后 flush",
+    )
