@@ -1,0 +1,5 @@
+[eval] LLM numeric inference with pass@5 and MAPE
+Samples evaluated: 100
+MAPE (median-of-5): 15.289907
+pass@5 within 10%: 4.00%
+

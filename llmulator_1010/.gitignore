@@ -1,0 +1,18 @@
+# Datasets / big artifacts
+data/*
+!data/README.md
+models/*
+!models/.gitkeep
+logs*
+*.pt
+*.pth
+*.bin
+*.safetensors
+*.npy
+*.npz
+.ipynb_checkpoints/
+__pycache__/
+*.egg-info/
+.DS_Store
+*.log
+wandb/

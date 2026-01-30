@@ -1,0 +1,42 @@
+data:
+  # Primary structured JSON datasets (software/hardware + A/B/C matrices)
+  train_dir: ./data/structured/hybrid/train
+  test_dir: ./data/structured/hybrid/test
+
+  # HLS‑only datasets (optional alt path)
+  hls_train_dir: ./data/structured/hls/train
+  hls_test_dir: ./data/structured/hls/test
+
+  # Optional: language‑specific datasets
+  c_train_dir: ./data/structured/c/train
+  c_test_dir: ./data/structured/c/test
+  openacc_train_dir: ./data/structured/openacc/train
+  openacc_test_dir: ./data/structured/openacc/test
+
+  # LLM SFT/DPO style text datasets
+  llm_train_profile: ./data/llm/train/profiledataset.json
+  llm_test_profile: ./data/llm/test/profiledataset.json
+
+models:
+  # Output directories within this folder
+  sft_out_dir: ./models/sft_lora
+  dpo_out_dir: ./models/dpo_lora
+  hardware_out_dir: ./models/hardware_predictor
+
+llm:
+  # Provide a valid local path or HF hub name for a causal LM.
+  # If empty, resolver will try candidate_paths then fallback_model.
+  base_model: ""
+  candidate_paths:
+    - /public/Llama-3.2-1B-Instruct
+    - /public_extends/Llama-3.2-1B-Instruct
+    - /public/Llama-3.1-8B-Instruct
+    - /public_extends/Llama-3.1-8B-Instruct
+    - /model/Meta-Llama-3.1-8B-Instruct
+    - /data/model/Meta-Llama-3.1-8B-Instruct
+  fallback_model: TinyLlama/TinyLlama-1.1B-Chat-v1.0
+  use_bf16: true
+
+compute:
+  # Set to explicit GPU id(s) as needed, or leave blank to auto
+  cuda_visible_devices: ""
